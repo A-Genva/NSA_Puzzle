@@ -1,0 +1,26 @@
+#Program to decipher a ciphered text with the help of the key.
+#cipher_text is the variable having the encrypted data
+cipher_text="6097703920902805098792458100127006308920278750110017283152904512008635073921961285410397244195102032905201942802717080593227"
+#key is encrypted data generated when cipher_text is generated.
+key="6981642705701301086201207791115091207421138236919216132358913111926129022415841781360483274671901231854407951401635567442416"
+#letters contains all the alphabets with index 0 to be left empty since we want 1 to be 'a' and 26 to be 'z'.
+letters=" abcdefghijklmnopqrstuvwxyz"
+#List l is an empty list to store the difference of each value of cipher_text and each value of key. If the value of cipher_text is less than the subsequent value of key, we add 10 to the cipher_text value because we need positive values. 
+l=list()
+#List is an empty list which stores the value of list l which is split into chunks of 2.
+l1=list()
+#Below for loop runs an iteration for each value of cipher_text and than compares it with the subsequent value of key. If value at cipher text is less than value at key, it adds 10 to the value of cipher_text.
+for i in range(len(cipher_text)):
+	if int(cipher_text[i])>=int(key[i]):
+		l.append(int(cipher_text[i])-int(key[i]))
+	else:
+		l.append((10+int(cipher_text[i]))-int(key[i]))
+#Below for loop splits the list l into half and concatenate the two characters side by side.
+for i in range(int(len(l))):
+	if i%2==0:
+		l1.append(str(l[i])+str(l[i+1]))
+	else:
+		continue
+#Below for loop checks each no. of list l1 and prints a character corresponding to it from the letters string.
+for i in range(len(l1)):
+	print(letters[int(l1[i])%26], end='')
